@@ -11,6 +11,7 @@ import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
 import * as PATHS from "./utils/paths";
 import * as CONSTS from "./utils/consts";
+import Mindnode from "./components/Mindnode";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -58,6 +59,7 @@ export default function App() {
   return (
     <div className="App">
       <Navbar handleLogout={handleLogout} user={user} />
+
       <Switch>
         <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
         <NormalRoute
@@ -76,6 +78,12 @@ export default function App() {
           exact
           path={PATHS.PROTECTEDPAGE}
           component={ProtectedPage}
+          user={user}
+        />
+        <ProtectedRoute
+          exact
+          path={PATHS.MINDMAP}
+          component={Mindnode}
           user={user}
         />
       </Switch>
